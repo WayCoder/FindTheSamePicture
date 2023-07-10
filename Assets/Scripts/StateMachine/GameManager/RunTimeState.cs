@@ -1,0 +1,95 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+using Unity.VisualScripting;
+
+[Serializable]
+public class RunTimeState : State
+{
+    private GameManager gameManager;
+
+    private float remainingTime;
+
+    private int maxPareCard;
+
+    private int pareCard;
+
+    public RunTimeState(StateMachine stateMachine, GameManager gameManager) : base(stateMachine)
+    {
+        this.gameManager = gameManager;
+    }
+    public override void Check()
+    {
+        if (maxPareCard == pareCard)
+        {
+            gameManager.endingState.SetEndingType(EndingState.Ending.Clear);
+
+            stateMachine.ChangeState(gameManager.endingState);
+
+            return;
+        }
+
+        if (remainingTime <= 0f)
+        {
+            gameManager.endingState.SetEndingType(EndingState.Ending.Faild);
+
+            stateMachine.ChangeState(gameManager.endingState);
+
+            return;
+        }
+    }
+    public override void Enter()
+    {
+        gameManager.state = GameManager.State.RunTime;
+
+        pareCard = 0;
+
+        maxPareCard = gameManager.cardArray.Length / 2;
+
+        remainingTime = gameManager.data.gamestateData.gameplayTime;
+
+        Shuffle();
+
+        //UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
+    }
+    public override void Execute()
+    {
+        //UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
+
+        remainingTime -= Time.deltaTime;
+    }
+    public override void Exit()
+    {
+        
+
+        //UIManager.instance.SetHealthBarUI(false);
+
+        // UIManager.instance.SetTimerUI(false);
+    }
+
+    public void MakePareCard()
+    {
+        pareCard++;
+    }
+
+
+
+    private void Shuffle()
+    {
+        List<Vector2> cloneList = new List<Vector2>(gameManager.positionList);
+
+        foreach (Card card in gameManager.cardArray)
+        {
+            int index = UnityEngine.Random.Range(0, cloneList.Count);
+
+            Vector2 position = cloneList[index];
+
+            card.transform.position = position; 
+
+            cloneList.RemoveAt(index);
+
+            card.Init();
+        }
+    }
+}

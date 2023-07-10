@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c497f1fae769854381db4e07e37a6df, type: 3}
+  m_Name: RuntimeDataSO
+  m_EditorClassIdentifier: 
+  <gamestateData>k__BackingField:
+    <gameplayTime>k__BackingField: 60
+    <createGarbageCount>k__BackingField: 20
+    <createHitEffectCount>k__BackingField: 60
+  <clickerData>k__BackingField:
+    <hitCheckTime>k__BackingField: 0.15
+  <cardData>k__BackingField:
+    <rotateSpeed>k__BackingField: 160
+  <objectData>k__BackingField:
+    <garbages>k__BackingField:
+    - {fileID: 3936010889389682989, guid: 5632eac550e2d424496febde2764d30a, type: 3}
+    - {fileID: 6534939134174691484, guid: 49d79ef6a263577428c6957851b2ed91, type: 3}
+    - {fileID: 6509551543237548095, guid: 767bfa2fc7de36d43a39936520786555, type: 3}
+    - {fileID: 9023884706779069049, guid: 00726bf17d34d11418b02bd5a404a9d6, type: 3}
+    <hitEffect>k__BackingField:
+    - {fileID: 6192724089161036655, guid: e2722fc8d1e38534c91ab28dfbd20bff, type: 3}
+    - {fileID: 4794043405585894027, guid: 8fe39ce724250a042b446e04abf2b189, type: 3}
+  <soundData>k__BackingField:
+    <bgm>k__BackingField: {fileID: 0}
+    <planetHit>k__BackingField: {fileID: 0}
+    <garbageHit>k__BackingField: {fileID: 0}
+  <uiData>k__BackingField:
+    <titleText>k__BackingField: "\uD589\uC131 \uC9C0\uD0A4\uAE30"
+    <endingText>k__BackingField: "\uAC8C\uC784 \uC885\uB8CC!"
+    <startText>k__BackingField: "\uC2DC\uC791\uD558\uAE30"
+    <retryText>k__BackingField: "\uB2E4\uC2DC\uD558\uAE30"
+    <winnerText>k__BackingField: Win
+    <loserText>k__BackingField: Lose
+    <winnerTextColor>k__BackingField: {r: 0.033018887, g: 0.4496026, b: 1, a: 1}
+    <loserTextColor>k__BackingField: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+    <timerBaseColor>k__BackingField: {r: 1, g: 0.75014925, b: 0.2216981, a: 1}
+    <timerRedColor>k__BackingField: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+    <planetSafeColor>k__BackingField: {r: 0.68235296, g: 1, b: 0.39215687, a: 1}
+    <planetWarningColor>k__BackingField: {r: 0.9607843, g: 0.5764706, b: 0.30588236, a: 1}
+    <planetDangerColor>k__BackingField: {r: 1, g: 0.32156864, b: 0.23137255, a: 1}
+    <planetWarningAmount>k__BackingField: 0.55
+    <planetDangerAmount>k__BackingField: 0.25
