@@ -8,12 +8,13 @@ public class Clicker : MonoBehaviour
     private List<Card> selectCardList;
 
 
-    public void Init()
+    
+    private void OnEnable()
     {
+        
+
         selectCardList.Clear();
     }
-
-
 
     private void Awake()
     {
@@ -37,9 +38,13 @@ public class Clicker : MonoBehaviour
         {
             case "Card":
                 Card card = collider.GetComponent<Card>();
+
+                if (selectCardList.Contains(card))
+                {
+                    return;
+                }
                 selectCardList.Add(card);
                 card.Draw();
-
                 if (selectCardList.Count >= 2)
                 {
                     StartCoroutine(DrawCardCheck());

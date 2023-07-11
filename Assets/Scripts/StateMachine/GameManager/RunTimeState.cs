@@ -45,11 +45,15 @@ public class RunTimeState : State
 
         gameManager.cardsParent.gameObject.SetActive(true);
 
+        gameManager.clicker.gameObject.SetActive(true);
+
         pareCard = 0;
 
         maxPareCard = gameManager.cardArray.Length / 2;
 
         remainingTime = gameManager.data.gamestateData.gameplayTime;
+
+
 
         Shuffle();
 
@@ -65,6 +69,17 @@ public class RunTimeState : State
     {
 
         UIManager.instance.SetTimerUI(false);
+
+        gameManager.cardsParent.gameObject.SetActive(false);
+
+        gameManager.clicker.gameObject.SetActive(false);
+
+        gameManager.clicker.StopAllCoroutines();
+
+        foreach (Card card in gameManager.cardArray)
+        {
+            card.StopAllCoroutines();
+        }
     }
 
     public void MakePareCard()

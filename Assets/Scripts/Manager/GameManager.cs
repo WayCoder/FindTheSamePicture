@@ -29,7 +29,11 @@ public class GameManager : MonoBehaviour
 
     [field: Header("Object")]
     [field: SerializeField] public GameObject cardsParent { get; private set; }
+    [field: SerializeField] public Clicker clicker { get; private set; }
+
     public Card[] cardArray { get; private set; }
+
+
     #endregion
 
 
