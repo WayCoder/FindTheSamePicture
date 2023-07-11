@@ -38,8 +38,6 @@ public class Clicker : MonoBehaviour
             case "Card":
                 Card card = collider.GetComponent<Card>();
                 selectCardList.Add(card);
-
-
                 card.Draw();
 
                 if (selectCardList.Count >= 2)

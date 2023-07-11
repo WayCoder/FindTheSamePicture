@@ -85,7 +85,6 @@ public class RunTimeState : State
             card.transform.position = position; 
 
             cloneList.RemoveAt(index);
-
         }
     }
 }

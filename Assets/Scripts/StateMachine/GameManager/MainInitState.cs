@@ -23,13 +23,7 @@ public class MainInitState : State
     {
         gameManager.state = GameManager.State.MainInit;
 
-       
-
-
         UIManager.instance.SetTitlePanelUI(true, gameManager.data.uiData.titleText, gameManager.data.uiData.startText);
-
-
-
     }
 
     public override void Execute()

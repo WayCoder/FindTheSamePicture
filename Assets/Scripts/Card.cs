@@ -103,6 +103,8 @@ public class Card : MonoBehaviour
 
     private void OnEnable()
     {
+        StopAllCoroutines();
+
         drawType = DrawType.Back;
 
         transform.rotation = Quaternion.Euler(0f, -180f, 0f);
