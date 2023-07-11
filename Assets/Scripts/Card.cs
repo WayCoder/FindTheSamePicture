@@ -104,6 +104,12 @@ public class Card : MonoBehaviour
     private void OnEnable()
     {
         drawType = DrawType.Back;
+
+        transform.rotation = Quaternion.Euler(0f, -180f, 0f);
+
+        drawing = false;
+
+        collider2D.enabled = true;
     }
 
     private void Awake()
