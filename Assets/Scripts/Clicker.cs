@@ -39,7 +39,7 @@ public class Clicker : MonoBehaviour
             case "Card":
                 Card card = collider.GetComponent<Card>();
 
-                if (selectCardList.Contains(card))
+                if (selectCardList.Contains(card) || card.drawing)
                 {
                     return;
                 }

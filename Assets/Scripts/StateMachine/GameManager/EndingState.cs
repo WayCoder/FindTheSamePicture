@@ -44,9 +44,6 @@ public class EndingState : State
         {
             UIManager.instance.SetTitlePanelUI(true, gameManager.data.uiData.faildText, gameManager.data.uiData.retryText);
         }
-
-
-       
     }
 
     public override void Execute()
