@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using DG.Tweening;
+
+
 
 public class Card : MonoBehaviour
 {
@@ -21,14 +23,8 @@ public class Card : MonoBehaviour
     public bool drawing { get; private set; }
 
 
-    public void Init()
-    {
-        drawType = DrawType.Back;
+    
 
-
-        StopAllCoroutines();
-
-    }
     public void Draw()
     {
         if (drawing)
@@ -39,14 +35,35 @@ public class Card : MonoBehaviour
         switch (drawType)
         {
             case DrawType.Front:
-               StartCoroutine(Rotate(DrawType.Back));
+                StartCoroutine(Rotate(DrawType.Back));
+                //Rotation(DrawType.Back);
                 break;
 
             case DrawType.Back:
                 StartCoroutine(Rotate(DrawType.Front));
+                //Rotation(DrawType.Front);
                 break;
         }
     }
+
+    private void Rotation(DrawType type)
+    {
+        drawing = true;
+
+        float targetY = (type == DrawType.Front) ? 180f : 0f;
+        float rotateDuration = 0.5f;
+
+        collider2D.enabled = false;
+
+        transform.DORotate(new Vector3(0f, targetY, 0f), rotateDuration)
+            .OnComplete(() =>
+            {
+                drawType = type;
+                collider2D.enabled = type == DrawType.Front;
+                drawing = false;
+            });
+    }
+
     private IEnumerator Rotate(DrawType type)
     {
         drawing = true;
@@ -58,22 +75,22 @@ public class Card : MonoBehaviour
         float rotateSpeed = GameManager.instance.data.cardData.rotateSpeed;
 
         collider2D.enabled = false;
-
+      
         while (totalRotation < Mathf.Abs(targetY))
         {
             float rotationAmount = rotateSpeed * Time.deltaTime;
-
+      
             float remainingRotation = Mathf.Abs(targetY) - totalRotation;
-
+      
             if (rotationAmount > remainingRotation)
             {
                 rotationAmount = remainingRotation;
             }
-
+         
             transform.Rotate(0f, rotationAmount, 0f);
-
+      
             totalRotation += Mathf.Abs(rotationAmount);
-
+      
             yield return null;
         }
 
@@ -81,16 +98,18 @@ public class Card : MonoBehaviour
 
         collider2D.enabled = type == DrawType.Front ? false : true;
 
-        if(collider2D.enabled)
-        {
-
-        }
-
         drawing = false;
     }
+
+    private void OnEnable()
+    {
+        drawType = DrawType.Back;
+    }
+
     private void Awake()
     {
         collider2D = GetComponent<Collider2D>();
     }
     
 }
+

@@ -96,21 +96,19 @@ public class UIManager : MonoBehaviour
         {
             case GameManager.Result.Planet_A:
                 resultText[(int)result].gameObject.SetActive(true);         
-                resultText[(int)result].text = data.winnerText;
-                resultText[(int)result].color = data.winnerTextColor;
+                resultText[(int)result].text = data.clearText;
+
                 resultText[(int)GameManager.Result.Planet_B].gameObject.SetActive(true);
-                resultText[(int)GameManager.Result.Planet_B].text = data.loserText;
-                resultText[(int)GameManager.Result.Planet_B].color = data.loserTextColor;
+                resultText[(int)GameManager.Result.Planet_B].text = data.faildText;
                 break;
 
 
             case GameManager.Result.Planet_B:
                 resultText[(int)result].gameObject.SetActive(true);
-                resultText[(int)result].text = data.winnerText;
-                resultText[(int)result].color = data.winnerTextColor;
+                resultText[(int)result].text = data.clearText;
+
                 resultText[(int)GameManager.Result.Planet_A].gameObject.SetActive(true);
-                resultText[(int)GameManager.Result.Planet_A].text = data.loserText;
-                resultText[(int)GameManager.Result.Planet_A].color = data.loserTextColor;
+                resultText[(int)GameManager.Result.Planet_A].text = data.faildText;
                 break;
 
 
@@ -120,41 +118,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetHealthBarUI(bool value, int index = -1, float health = 0f, float maxHealth = 0f)
-    {
-        foreach (Image bar in healthBar)
-        {
-            bar.gameObject.SetActive(value);
-        }
-
-        if (index == -1)
-        {
-            return;
-        }
-
-        UIData data = GameManager.instance.data.uiData;
-
-        TextMeshProUGUI textMesh = healthBar[index].GetComponentInChildren<TextMeshProUGUI>();
-
-        Image image = healthBar[index].transform.GetChild(0).GetComponentInChildren<Image>();
-
-        if (value && textMesh && image)
-        {
-            textMesh.text = health.ToString() + "/" + maxHealth.ToString();
-
-            image.fillAmount = health / maxHealth;
-
-            if (image.fillAmount <= data.planetWarningAmount)
-            {
-                image.color = image.fillAmount <= data.planetDangerAmount ? data.planetDangerColor : data.planetWarningColor;
-            }
-            else
-            {
-                image.color = data.planetSafeColor;
-            }
-        }
-
-    }
+   
 
 
     public void SetScoreTextUI(bool value, int index = -1, int score = 0)

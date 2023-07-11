@@ -43,6 +43,8 @@ public class RunTimeState : State
     {
         gameManager.state = GameManager.State.RunTime;
 
+        gameManager.cardsParent.gameObject.SetActive(true);
+
         pareCard = 0;
 
         maxPareCard = gameManager.cardArray.Length / 2;
@@ -51,29 +53,24 @@ public class RunTimeState : State
 
         Shuffle();
 
-        //UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
+        UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
     }
     public override void Execute()
     {
-        //UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
+        UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
 
         remainingTime -= Time.deltaTime;
     }
     public override void Exit()
     {
-        
 
-        //UIManager.instance.SetHealthBarUI(false);
-
-        // UIManager.instance.SetTimerUI(false);
+        UIManager.instance.SetTimerUI(false);
     }
 
     public void MakePareCard()
     {
         pareCard++;
     }
-
-
 
     private void Shuffle()
     {
@@ -89,7 +86,6 @@ public class RunTimeState : State
 
             cloneList.RemoveAt(index);
 
-            card.Init();
         }
     }
 }

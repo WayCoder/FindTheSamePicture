@@ -23,7 +23,7 @@ public class StateMachine
 
         this.state?.Enter();
     }
-    public void Execute()
+    public void Update()
     {
         state?.Execute();
 

@@ -27,10 +27,6 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public Result result { get; set; }
     public List<Vector2> positionList { get; private set; } 
 
-   
-
-
-
     [field: Header("Object")]
     [field: SerializeField] public GameObject cardsParent { get; private set; }
     public Card[] cardArray { get; private set; }
@@ -96,7 +92,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        stateMachine?.Execute();
+        stateMachine?.Update();
     }
     #endregion
 }

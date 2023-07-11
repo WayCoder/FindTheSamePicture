@@ -33,12 +33,20 @@ public class EndingState : State
     {
         gameManager.state = GameManager.State.Ending;
 
-        //ObjectManager.instance.AllUnactivate();
+        gameManager.cardsParent.gameObject.SetActive(false);
 
-        //UIManager.instance.SetTitlePanelUI(true, gameManager.data.uiData.endingText, gameManager.data.uiData.retryText);
+        if (ending == Ending.Clear)
+        {
+            UIManager.instance.SetTitlePanelUI(true, gameManager.data.uiData.clearText, gameManager.data.uiData.retryText);
 
-        //UIManager.instance.SetResultUI(true, gameManager.result);
+        }
+        else
+        {
+            UIManager.instance.SetTitlePanelUI(true, gameManager.data.uiData.faildText, gameManager.data.uiData.retryText);
+        }
 
+
+       
     }
 
     public override void Execute()
@@ -51,7 +59,7 @@ public class EndingState : State
 
     public override void Exit()
     {
-        //UIManager.instance.SetTitlePanelUI(false);
+        UIManager.instance.SetTitlePanelUI(false);
 
        // UIManager.instance.SetResultUI(false);
 
