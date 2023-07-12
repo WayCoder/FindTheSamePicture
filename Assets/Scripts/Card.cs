@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
 
     [field: SerializeField] public DrawType drawType { get; private set; }
 
-    public bool drawing { get; private set; }
+    [field: SerializeField] public bool drawing { get; private set; }
 
 
     
@@ -32,50 +32,59 @@ public class Card : MonoBehaviour
             return;
         }
 
-        switch (drawType)
-        {
-            case DrawType.Front:
-                StartCoroutine(Rotate(DrawType.Back));
-                //Rotation(DrawType.Back);
-                break;
+        drawing = true;
 
-            case DrawType.Back:
-                StartCoroutine(Rotate(DrawType.Front));
-                //Rotation(DrawType.Front);
-                break;
-        }
+        collider2D.enabled = false;
+
+        //Rotation(drawType == DrawType.Front ? DrawType.Back : DrawType.Front);
+        StartCoroutine(Rotate(drawType == DrawType.Front ? DrawType.Back : DrawType.Front));
+
+      
+    }
+
+    public void Flip()
+    {
+
+        drawType = drawType == DrawType.Front ? DrawType.Back : DrawType.Front;
+
+        collider2D.enabled = drawType == DrawType.Front ? false : true;
+
+        float targetY = (drawType == DrawType.Front) ? 180f : 0f;
+
+        float rotateDuration = 0.5f;
+
+
+        transform.DORotate(new Vector3(0f, targetY, 0f), rotateDuration);
+          
     }
 
     private void Rotation(DrawType type)
     {
-        drawing = true;
-
         float targetY = (type == DrawType.Front) ? 180f : 0f;
+
         float rotateDuration = 0.5f;
 
-        collider2D.enabled = false;
 
-        transform.DORotate(new Vector3(0f, targetY, 0f), rotateDuration)
+        transform.DORotate(Vector3.up, rotateDuration).SetEase(Ease.OutElastic)
             .OnComplete(() =>
             {
                 drawType = type;
-                collider2D.enabled = type == DrawType.Front;
+
+                collider2D.enabled = type == DrawType.Back;
+
                 drawing = false;
             });
     }
 
     private IEnumerator Rotate(DrawType type)
-    {
-        drawing = true;
-
+    {       
         float targetY = 180f;
 
         float totalRotation = 0f;
 
         float rotateSpeed = GameManager.instance.data.cardData.rotateSpeed;
 
-        collider2D.enabled = false;
-      
+       
         while (totalRotation < Mathf.Abs(targetY))
         {
             float rotationAmount = rotateSpeed * Time.deltaTime;

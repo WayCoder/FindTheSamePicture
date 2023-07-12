@@ -57,7 +57,7 @@ public class RunTimeState : State
 
         Shuffle();
 
-        UIManager.instance.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
+        UIManager.instance?.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
     }
     public override void Execute()
     {

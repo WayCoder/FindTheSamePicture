@@ -45,9 +45,12 @@ public class Clicker : MonoBehaviour
                 }
                 selectCardList.Add(card);
                 card.Draw();
+                //card.Flip();
                 if (selectCardList.Count >= 2)
                 {
                     StartCoroutine(DrawCardCheck());
+
+                    //FlipCardCheck();
 
                     break;
                 }
@@ -55,7 +58,6 @@ public class Clicker : MonoBehaviour
         }
 
     }
-
 
     private IEnumerator DrawCardCheck()
     {
@@ -75,7 +77,17 @@ public class Clicker : MonoBehaviour
         }
 
         selectCardList.Clear();
+    }
+
+    private IEnumerator FlipCards()
+    {
+        yield return new WaitForSeconds(1f);
+
+        selectCardList[0].Draw();
+
+        selectCardList[1].Draw();
 
     }
+
 
 }

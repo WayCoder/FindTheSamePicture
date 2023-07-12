@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!50 &273331533
 Rigidbody2D:
   serializedVersion: 4
@@ -323,6 +323,7 @@ MonoBehaviour:
   <state>k__BackingField: 0
   <result>k__BackingField: 0
   <cardsParent>k__BackingField: {fileID: 1706138641}
+  <clicker>k__BackingField: {fileID: 273331535}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
