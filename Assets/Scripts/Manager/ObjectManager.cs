@@ -8,6 +8,7 @@ public class ObjectManager : MonoBehaviour
     public static ObjectManager instance { get; private set; }
    
     private Queue<ParticleSystem> hitEffectMap;
+
     private void Awake()
     {
         if (instance != null)

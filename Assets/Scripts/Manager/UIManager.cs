@@ -95,25 +95,35 @@ public class UIManager : MonoBehaviour
         switch(result)
         {
             case GameManager.Result.Planet_A:
-                resultText[(int)result].gameObject.SetActive(true);         
+
+                resultText[(int)result].gameObject.SetActive(true);   
+                
                 resultText[(int)result].text = data.clearText;
 
                 resultText[(int)GameManager.Result.Planet_B].gameObject.SetActive(true);
+
                 resultText[(int)GameManager.Result.Planet_B].text = data.faildText;
+
                 break;
 
 
             case GameManager.Result.Planet_B:
+
                 resultText[(int)result].gameObject.SetActive(true);
+
                 resultText[(int)result].text = data.clearText;
 
                 resultText[(int)GameManager.Result.Planet_A].gameObject.SetActive(true);
+
                 resultText[(int)GameManager.Result.Planet_A].text = data.faildText;
+
                 break;
 
 
             case GameManager.Result.Draw:
+
                 resultText[(int)result].gameObject.SetActive(true);
+
                 break;
         }
     }

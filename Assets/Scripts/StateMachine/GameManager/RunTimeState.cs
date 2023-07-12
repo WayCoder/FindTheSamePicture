@@ -53,8 +53,6 @@ public class RunTimeState : State
 
         remainingTime = gameManager.data.gamestateData.gameplayTime;
 
-
-
         Shuffle();
 
         UIManager.instance?.SetTimerUI(true, remainingTime / gameManager.data.gamestateData.gameplayTime, (int)remainingTime);
@@ -67,7 +65,6 @@ public class RunTimeState : State
     }
     public override void Exit()
     {
-
         UIManager.instance.SetTimerUI(false);
 
         gameManager.cardsParent.gameObject.SetActive(false);
@@ -81,12 +78,10 @@ public class RunTimeState : State
             card.StopAllCoroutines();
         }
     }
-
     public void MakePareCard()
     {
         pareCard++;
     }
-
     private void Shuffle()
     {
         List<Vector2> cloneList = new List<Vector2>(gameManager.positionList);
@@ -95,9 +90,7 @@ public class RunTimeState : State
         {
             int index = UnityEngine.Random.Range(0, cloneList.Count);
 
-            Vector2 position = cloneList[index];
-
-            card.transform.position = position; 
+            card.transform.position = cloneList[index]; 
 
             cloneList.RemoveAt(index);
         }

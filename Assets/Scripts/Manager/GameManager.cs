@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void MakePareCard()
     {
-        runTimeState.MakePareCard();
+        runTimeState?.MakePareCard();
     }
     #endregion
 
